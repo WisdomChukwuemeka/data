@@ -79,7 +79,7 @@ class MusicView(CountMixin, generics.ListCreateAPIView):
         serializer.save(created_by=request.user)
         total_count = Music.objects.count()
         return Response({
-            'message': 'Music Playlist created successfully',
+            'message': 'Music created successfully',
             'music': serializer.data,
             'count': total_count
         }, status=status.HTTP_201_CREATED)      
