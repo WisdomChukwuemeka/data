@@ -80,8 +80,8 @@ CORS_ALLOW_HEADERS = (
 
 CORS_ALLOWED_ORIGINS = [
     "https://momfront.onrender.com",
-    "https://WisdomChukwuemeka.github.io",
-    "https://WisdomChukwuemeka.github.io/mission",
+    "https://wisdomchukwuemeka.github.io",
+    "https://wisdomchukwuemeka.github.io/mission",
     # "http://localhost:5173",
     # "http://localhost:5174",
     # "http://127.0.0.1:5174",
