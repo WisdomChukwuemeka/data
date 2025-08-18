@@ -88,6 +88,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://wisdomchukwuemeka.github.io",
     "https://momfront.onrender.com",
     "https://WisdomChukwuemeka.github.io",
     "https://WisdomChukwuemeka.github.io/mission",
@@ -99,6 +100,7 @@ AUTH_USER_MODEL = 'accounts.User'
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
