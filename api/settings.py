@@ -90,8 +90,8 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://wisdomchukwuemeka.github.io",
     "https://momfront.onrender.com",
-    "https://WisdomChukwuemeka.github.io",
-    "https://WisdomChukwuemeka.github.io/mission",
+    "https://wisdomchukwuemeka.github.io",
+    "https://wisdomchukwuemeka.github.io/mission",
 
 ]
 
