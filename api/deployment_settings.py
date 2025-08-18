@@ -32,8 +32,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://momfront.onrender.com",
+    "https://mission-gc6d.onrender.com"
 ]
+
 
 STORAGES = {
     'default': {
