@@ -33,7 +33,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://mission-gc6d.onrender.com",
-    "https://WisdomChukwuemeka.github.io",
+    "https://wisdomchukwuemeka.github.io",
 ]
 
 
