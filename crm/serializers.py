@@ -11,10 +11,11 @@ from .models import (
 
 
 class EventSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model = Event
         fields = [
-            'id', 'title', 'image', 'description', 'date',
+            'id', 'title', 'image_url', 'description', 'date',
             'location', 'created_at', 'created_by'
         ]
         read_only_fields = ['id', 'created_at', 'created_by']
@@ -27,11 +28,15 @@ class EventSerializer(serializers.ModelSerializer):
                 f"Only image files ({', '.join(allowed_exts)}) are allowed."
             )
         return value
+    
+    def get_image_url(self, obj):
+        return obj.image.url if obj.image else None
 
 class MusicSerializer(serializers.ModelSerializer):
+    music_url = serializers.SerializerMethodField()
     class Meta:
         model = Music
-        fields = ['id', 'music', 'author', 'title', 
+        fields = ['id', 'music_url', 'author', 'title', 
                   'uploaded_at', 'created_by']
         read_only_fields = ['id', 'uploaded_at',
                             'created_by']
@@ -45,8 +50,12 @@ class MusicSerializer(serializers.ModelSerializer):
             )
         return value
     
+    def get_music_url(self, obj):
+        return obj.music.url if obj.music else None
+    
 
 class VideoSerializer(serializers.ModelSerializer):
+    video_url = serializers.SerializerMethodField()
     class Meta:
         model = Video
         fields = [
@@ -64,9 +73,13 @@ class VideoSerializer(serializers.ModelSerializer):
         if value.size > 100 * 1024 * 1024:
             raise serializers.ValidationError("File too large (max 100 MB).")
         return value
+    
+    def get_video_url(self, obj):
+        return obj.video_url.url if obj.video_url else None
 
 
 class BookFileSerializer(serializers.ModelSerializer):
+    file_url = serializers.SerializerMethodField()
     class Meta:
         model = Book_File
         fields = ['id', 'file_url']
@@ -78,17 +91,23 @@ class BookFileSerializer(serializers.ModelSerializer):
             if ext not in ['pdf', 'docx']:
                 raise serializers.ValidationError("Only PDF or DOCX files are allowed.")
         return value
+    
+    def get_file_url(self, obj):
+        return obj.book_file.url if obj.book_file else None
 
 class BookSerializer(serializers.ModelSerializer):
     file_url = BookFileSerializer(read_only=True)
+    cover_image = serializers.SerializerMethodField()
     class Meta:
         model = Book
         fields = [
             'id', 'title', 'author', 'description',
-            'file_url', 'cover_image_url', 'created_by', 'created_at'
+            'file_url', 'cover_image', 'created_by', 'created_at'
         ]
         read_only_fields = ['id', 'created_at', 'created_by']
 
+    def get_cover_image(self, obj):
+        return obj.cover_image_url.url if obj.cover_image_url else None
 
 class AboutSerializer(serializers.ModelSerializer):
     class Meta:
@@ -108,6 +127,7 @@ class ContactMessageSerializer(serializers.ModelSerializer):
 
         
 class TestimonialSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model = Testimonial
         fields = ['id', 'name', 'content', 'image_url', 'created_at']
@@ -121,6 +141,9 @@ class TestimonialSerializer(serializers.ModelSerializer):
                 f"Only image files ({', '.join(allowed_exts)}) are allowed."
             )
         return value
+    
+    def get_image_url(self, obj):
+        return obj.image_url.url if obj.image_url else None
 
 
 class AllContentSerializer(serializers.Serializer):
